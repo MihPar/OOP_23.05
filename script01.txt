@@ -1,0 +1,41 @@
+Используйте IIFE для создания модуля
+Немедленно вызываемое функциональное выражение (IIFE) часто используется для группировки 
+связанных функций в один объект или модуль . Например, более ранняя задача определила 
+два миксина:
+
+function glideMixin(obj) {
+  obj.glide = function() {
+    console.log("Gliding on the water");
+  };
+}
+function flyMixin(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  };
+}
+Мы можем сгруппировать эти миксины в модуль следующим образом:
+
+let motionModule = (function () {
+  return {
+    glideMixin: function(obj) {
+      obj.glide = function() {
+        console.log("Gliding on the water");
+      };
+    },
+    flyMixin: function(obj) {
+      obj.fly = function() {
+        console.log("Flying, wooosh!");
+      };
+    }
+  }
+})();
+Обратите внимание, что у вас есть немедленно вызываемое функциональное выражение (IIFE), 
+которое возвращает объект motionModule. Этот возвращенный объект содержит все варианты 
+поведения примесей как свойства объекта. Преимущество модульного шаблона заключается в том, 
+что все поведения движения могут быть упакованы в один объект, который затем может 
+использоваться другими частями вашего кода. Вот пример его использования:
+
+motionModule.glideMixin(duck);
+duck.glide();
+Создайте модуль с именем funModule, чтобы обернуть два миксина isCuteMixinи singMixin. 
+funModuleдолжен вернуть объект.
